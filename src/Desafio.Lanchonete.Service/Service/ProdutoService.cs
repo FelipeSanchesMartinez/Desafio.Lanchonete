@@ -44,6 +44,7 @@ namespace Desafio.Lanchonete.Service.Service
         {
 
             double total = 0;
+            double valorAtual=0;
             FormaDePagamento objFormaDePagamento = _formaDePagamento.ObterFormadePagamento(formaDePagamento);
             var quantidadeDeCodigos = codigos.Count;
 
@@ -53,12 +54,13 @@ namespace Desafio.Lanchonete.Service.Service
                 int qunatidadeAtual = quantidades[indice];
 
                 var produto = GetProdutoPorCodigo(codigoAtual);
-                var quantidadeProdutos = qunatidadeAtual;
+
 
                 if (produto != null)
                 {
-                    total = objFormaDePagamento.CalcularTotal(quantidadeProdutos, produto.Valor);
-
+                    double valorDoFor = objFormaDePagamento.CalcularTotal(qunatidadeAtual, produto.Valor);
+                   
+                    total = valorAtual + valorDoFor; ;
                 }
             }
             return total;

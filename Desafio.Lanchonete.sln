@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Lanchonete.API", "src\Desafio.Lanchonete.API\Desafio.Lanchonete.API.csproj", "{B276C396-9D82-46D5-8B16-B25516EC4AB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.Lanchonete.API", "src\Desafio.Lanchonete.API\Desafio.Lanchonete.API.csproj", "{B276C396-9D82-46D5-8B16-B25516EC4AB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Lanchonete.Service", "src\Desafio.Lanchonete.Service\Desafio.Lanchonete.Service.csproj", "{8A81871D-740F-4859-A68A-A727C87BCBD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.Lanchonete.Service", "src\Desafio.Lanchonete.Service\Desafio.Lanchonete.Service.csproj", "{8A81871D-740F-4859-A68A-A727C87BCBD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Lanchonete.UnitTests", "src\TestProject1\Desafio.Lanchonete.UnitTests.csproj", "{6154885E-E103-47BF-AABB-0CC75F2F5C14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.Lanchonete.UnitTests", "src\TestProject1\Desafio.Lanchonete.UnitTests.csproj", "{6154885E-E103-47BF-AABB-0CC75F2F5C14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

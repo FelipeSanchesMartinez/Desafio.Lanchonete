@@ -14,7 +14,10 @@
 
             if (!AcrescentarPorcentagemDesconto && !AcrescentarPorcentagemAcrescimo)
             {
-                double valor = quantidade * valorProduto;
+                
+                double valor =+ quantidade * valorProduto;
+                
+                
                 return valor;
             }
             else if (AcrescentarPorcentagemDesconto)
