@@ -26,11 +26,6 @@ namespace Desafio.Lanchonete.Service.Service
             return formasDePagamentos.FirstOrDefault(forma => forma.Nome == nome);
         }
 
-        public double CalcularValorDeAcordoComFormaDePagemento(string formaDePagamentoNome, int quantidade, double valorProduto)
-        {
-            var formaDePagamento = ObterFormadePagamento(formaDePagamentoNome);
-           return formaDePagamento.CalcularTotal(quantidade, valorProduto);
-       
-        }
+        
     }
 }

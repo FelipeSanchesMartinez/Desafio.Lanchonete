@@ -1,4 +1,6 @@
-﻿namespace Desafio.Lanchonete.Service.Model
+﻿using System.Drawing;
+
+namespace Desafio.Lanchonete.Service.Model
 {
     public class FormaDePagamento
     {
@@ -10,37 +12,33 @@
 
         public double CalcularTotal(int quantidade, double valorProduto)
         {
-            
+            double valor;
 
             if (!AcrescentarPorcentagemDesconto && !AcrescentarPorcentagemAcrescimo)
             {
-                
-                double valor =+ quantidade * valorProduto;
-                
-                
-                return valor;
+                valor = +quantidade * valorProduto;
+
             }
             else if (AcrescentarPorcentagemDesconto)
             {
-                double valor = quantidade * valorProduto;
+                double valorTotal = quantidade * valorProduto;
                 var porcentagemDecimal = new decimal(PorcentagemPagamento);
                 var divisao = new decimal(100);
-                var valorDecimal = new decimal(valor);
-                var calculo = valorDecimal - (valorDecimal * (porcentagemDecimal/divisao));
-                return Convert.ToDouble(calculo);
-
+                var valorDecimal = new decimal(valorTotal);
+                var calculo = valorDecimal - (valorDecimal * (porcentagemDecimal / divisao));
+                valor = Convert.ToDouble(calculo);
             }
             else
             {
-                double valor = quantidade * valorProduto;
+                double valorTotal = quantidade * valorProduto;
                 var porcentagemDecimal = new decimal(PorcentagemPagamento);
                 var divisao = new decimal(100);
-                var valorDecimal = new decimal(valor);
+                var valorDecimal = new decimal(valorTotal);
                 var calculo = valorDecimal + (valorDecimal * (porcentagemDecimal / divisao));
-                return Convert.ToDouble(calculo);
+                valor = Convert.ToDouble(calculo);
             }
+            return valor;
+
         }
-
     }
-
 }

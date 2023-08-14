@@ -38,8 +38,6 @@ namespace Desafio.Lanchonete.UnitTests.Model
             List<int> inteiros = new List<int>() { 1, 2 };
             List<string> codigos = new List<string>() { "cafe", "suco" };
             var valorTotal = _produtoService.CalcularValorDaCompra(codigos, inteiros,"debito");
-            
-
             Assert.Equal(15.4, valorTotal);
         }
     

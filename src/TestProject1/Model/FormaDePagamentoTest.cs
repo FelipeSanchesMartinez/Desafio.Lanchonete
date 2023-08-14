@@ -8,12 +8,12 @@ namespace Desafio.Lanchonete.UnitTests.Model
     {
 
         FormaDePagamentoService _formaDePagamento;
-        IProdutoService _produtoService;
+        
 
-        public FormaDePagamentoTest(IProdutoService produtoService)
+        public FormaDePagamentoTest()
         {
             _formaDePagamento = new FormaDePagamentoService();
-            _produtoService = produtoService;
+            
         }
 
         [Fact]
@@ -35,20 +35,11 @@ namespace Desafio.Lanchonete.UnitTests.Model
         [Fact]
         public void ShouldGetTotalByFomaDePagamentoClass()
         {
+          
             var filteredFormaDePagamento = _formaDePagamento.ObterFormadePagamento("debito");
-            var total = filteredFormaDePagamento.CalcularTotal(2, 3);
+            var total = filteredFormaDePagamento.CalcularTotal(2,6.2);
 
-            Assert.Equal(6, total);
+            Assert.Equal(12.4, total);
         }
-        [Fact]
-        public void ShouldGetTotalByFomaDePagamentoString()
-        {
-            
-            var total = _formaDePagamento.CalcularValorDeAcordoComFormaDePagemento("debito",2, 3);
-
-            Assert.Equal(6, total);
-        }
-
-       
     }
 }
