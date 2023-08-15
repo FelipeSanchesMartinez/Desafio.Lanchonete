@@ -1,5 +1,6 @@
 using Desafio.Lanchonete.Service.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.ConstrainedExecution;
 
 namespace Desafio.Lanchonete.API.Controllers
 {
@@ -21,6 +22,7 @@ namespace Desafio.Lanchonete.API.Controllers
         public IActionResult FazerPedido([FromQuery] List<string> codigos, [FromQuery] List<int> quantidades, [FromQuery] string formaDePagamento = "")
         {
             var todosProdutos = _produtoService.GetListaProdutos();
+            var semItemPrincipal = _produtoService.PodeComprar(codigos);
             var formaPagamento = _formaDePagamentoService.ObterFormadePagamento(formaDePagamento);
 
             if (!codigos.Any())
@@ -48,10 +50,15 @@ namespace Desafio.Lanchonete.API.Controllers
 
                 return BadRequest("Forma de pagamento inválida!");
             }
+            else if (semItemPrincipal == false)
+            {
+                return BadRequest("Item extra não pode ser pedido sem o principal");
+
+            }
             else
             {
-
                 var valorDaCompra = _produtoService.CalcularValorDaCompra(codigos, quantidades, formaDePagamento);
+
                 return Ok(valorDaCompra);
             }
         }

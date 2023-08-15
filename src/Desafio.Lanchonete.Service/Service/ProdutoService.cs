@@ -1,5 +1,6 @@
 ﻿using Desafio.Lanchonete.Service.Model;
 using Desafio.Lanchonete.Service.Service.Interfaces;
+using System.Linq;
 
 namespace Desafio.Lanchonete.Service.Service
 {
@@ -39,7 +40,28 @@ namespace Desafio.Lanchonete.Service.Service
             return ListaDeProdutos.FirstOrDefault(produto => produto.Codigo == nome);
 
         }
+        public bool PodeComprar(List<string> nomes)
+        {
+            var ListaDeProdutos = GetListaProdutos();
+            var produtosEncontrados = ListaDeProdutos.FindAll(produto => nomes.Any(nome => produto.Codigo.Contains(nome)));
 
+            var temSanduiche = produtosEncontrados.Exists(produto =>produto.Codigo == "sanduiche");
+            var temQueijo = produtosEncontrados.Exists(produto => produto.Codigo == "queijo");
+            var temCafe = produtosEncontrados.Exists(produto => produto.Codigo == "cafe");
+            var temChamtily = produtosEncontrados.Exists(produto => produto.Codigo == "chantily");
+
+            if (temChamtily == true && temCafe == false)
+            {
+                return false;
+            }
+            else if (temQueijo == true && temSanduiche == false)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        
         public double CalcularValorDaCompra(List<string> codigos, List<int> quantidades, string formaDePagamento)
         {
 
@@ -47,20 +69,25 @@ namespace Desafio.Lanchonete.Service.Service
 
             FormaDePagamento objFormaDePagamento = _formaDePagamento.ObterFormadePagamento(formaDePagamento);
             var quantidadeDeCodigos = codigos.Count;
+            var podeComprar = PodeComprar(codigos);
+            if (podeComprar == true)
+            {
 
-            for (int indice = 0; indice < quantidadeDeCodigos; indice++)
+
+                for (int indice = 0; indice < quantidadeDeCodigos; indice++)
             {
                 string codigoAtual = codigos[indice];
                 int qunatidadeAtual = quantidades[indice];
 
                 var produto = GetProdutoPorCodigo(codigoAtual);
+                
+              
+                    if (produto != null)
+                    {
+                        double valorDoFor = objFormaDePagamento.CalcularTotal(qunatidadeAtual, produto.Valor);
+                        total += valorDoFor;
 
-
-                if (produto != null)
-                {
-                   double valorDoFor = objFormaDePagamento.CalcularTotal(qunatidadeAtual, produto.Valor);
-                    total += valorDoFor;
-                  
+                    }
                 }
             }
             return total;

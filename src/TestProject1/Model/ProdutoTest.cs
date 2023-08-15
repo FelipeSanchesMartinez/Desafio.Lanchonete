@@ -31,6 +31,14 @@ namespace Desafio.Lanchonete.UnitTests.Model
 
             Assert.Equal("suco", produto.Codigo);
         }
+        [Fact]
+        public void ShouldPodeComprar()
+        {
+            
+            List<string> codigos = new List<string>() { "chantily", "queijo" };
+            var result = _produtoService.PodeComprar(codigos);
+            Assert.Equal(false, result);
+        }
 
         [Fact]
         public void ShouldCalcularValorDaCompra()
